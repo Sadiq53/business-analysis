@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indore Electrical Wholesale — Business Intelligence Dashboard 2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0a0b0f;
+      --bg-secondary: #12141a;
+      --bg-card: #181b24;
+      --bg-elevated: #1e222d;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-accent: rgba(212, 168, 83, 0.25);
+      --text-primary: #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #d4a853;
+      --accent-soft: rgba(212, 168, 83, 0.12);
+      --accent-glow: rgba(212, 168, 83, 0.35);
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --info: #60a5fa;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: clip;
+      max-width: 100vw;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 168, 83, 0.08), transparent),
+        radial-gradient(ellipse 60% 40% at 100% 50%, rgba(96, 165, 250, 0.04), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .app { position: relative; z-index: 1; }
+
+    /* Header */
+    .header {
+      padding: 2rem 2.5rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-primary);
+    }
+
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid var(--border-accent);
+      padding: 0.35rem 0.75rem;
+      border-radius: 100px;
+      margin-bottom: 0.75rem;
+    }
+
+    .badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    h1 span { color: var(--accent); font-style: italic; }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+      max-width: 560px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-tab {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .nav-tab:hover { color: var(--text-primary); background: var(--bg-elevated); }
+    .nav-tab.active {
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-color: var(--border-accent);
+    }
+
+    /* Main layout */
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 2.5rem 4rem;
+    }
+
+    section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 1.5rem;
+    }
+
+    .section-header {
+      margin-bottom: 1.75rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      max-width: 720px;
+    }
+
+    /* KPI cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .kpi-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+    }
+
+    .kpi-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0.6;
+    }
+
+    .kpi-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+
+    .kpi-value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .kpi-value small {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .kpi-delta {
+      font-size: 0.8rem;
+      margin-top: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .kpi-delta.up { color: var(--success); }
+    .kpi-delta.neutral { color: var(--warning); }
+
+    /* Grid layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .grid-2 > *, .grid-3 > * {
+      min-width: 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .chart-wrap {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      min-height: 260px;
+    }
+
+    .chart-wrap.tall { height: 360px; min-height: 320px; }
+    .chart-wrap.short { height: 240px; min-height: 220px; }
+
+    .chart-wrap canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .chart-error {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* Theory blocks */
+    .theory-block {
+      background: var(--bg-elevated);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .theory-block h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .theory-block p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Tables */
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 -0.25rem;
+      padding: 0 0.25rem;
+    }
+
+    .table-scroll .data-table {
+      min-width: 560px;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+
+    .data-table th {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.7rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-elevated);
+    }
+
+    .data-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+
+    .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .data-table .highlight { color: var(--text-primary); font-weight: 500; }
+
+    /* Tags */
+    .tag {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    .tag.high { background: rgba(52, 211, 153, 0.15); color: var(--success); }
+    .tag.medium { background: rgba(251, 191, 36, 0.15); color: var(--warning); }
+    .tag.low { background: rgba(248, 113, 113, 0.15); color: var(--danger); }
+    .tag.very-high { background: rgba(96, 165, 250, 0.15); color: var(--info); }
+
+    /* Location ranking */
+    .location-rank {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--bg-elevated);
+      border-radius: var(--radius-sm);
+      margin-bottom: 0.75rem;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+
+    .location-rank:hover { border-color: var(--border-accent); }
+    .location-rank.top { border-color: var(--border-accent); background: var(--accent-soft); }
+
+    .rank-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      background: var(--bg-card);
+      color: var(--accent);
+      border: 1px solid var(--border-accent);
+    }
+
+    .location-rank.top .rank-num {
+      background: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    .location-info h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .location-info p { font-size: 0.8rem; color: var(--text-muted); }
+
+    .score-bar {
+      margin-left: auto;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .score-bar .score {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .score-bar .score-label {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Timeline */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .timeline-phase {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      position: relative;
+    }
+
+    .timeline-phase::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    .timeline-phase.active::before { opacity: 1; }
+
+    .phase-months {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .phase-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .phase-tasks {
+      list-style: none;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .phase-tasks li {
+      padding: 0.3rem 0;
+      padding-left: 0.85rem;
+      position: relative;
+    }
+
+    .phase-tasks li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.7rem;
+    }
+
+    /* Business model diagram */
+    .model-diagram {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .model-center {
+      display: inline-block;
+      background: var(--accent-soft);
+      border: 2px solid var(--border-accent);
+      border-radius: var(--radius);
+      padding: 1.25rem 2rem;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .model-branches {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .model-branch {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      text-align: left;
+    }
+
+    .model-branch h4 {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+
+    .model-branch .pct {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .model-branch ul {
+      list-style: none;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .model-branch ul li { padding: 0.2rem 0; }
+
+    /* Risk cards */
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .risk-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+    }
+
+    .risk-level {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .risk-level.critical { color: var(--danger); }
+    .risk-level.high { color: var(--warning); }
+    .risk-level.medium { color: var(--info); }
+
+    .risk-card h4 { font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .risk-card p { font-size: 0.8rem; color: var(--text-muted); }
+    .risk-card .mitigation {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--success);
+    }
+
+    /* CTA footer */
+    .cta-section {
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .cta-section h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-section p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .setup-options {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .setup-btn {
+      padding: 0.85rem 1.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      transition: all 0.2s;
+    }
+
+    .setup-btn:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .setup-btn.recommended {
+      background: var(--accent);
+      color: var(--bg-primary);
+      border-color: var(--accent);
+    }
+
+    .setup-btn.recommended:hover {
+      filter: brightness(1.1);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1200px) {
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 1.25rem 1rem 1rem;
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+      }
+
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.25rem;
+      }
+
+      .subtitle {
+        font-size: 0.88rem;
+        max-width: none;
+      }
+
+      .nav-tabs {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        gap: 0.35rem;
+        padding-bottom: 0.35rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        mask-image: linear-gradient(to right, black 90%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
+      }
+
+      .nav-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav-tab {
+        flex-shrink: 0;
+        white-space: nowrap;
+        padding: 0.45rem 0.85rem;
+        font-size: 0.75rem;
+      }
+
+      main {
+        padding: 1.25rem 1rem 3rem;
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+      }
+
+      section {
+        margin-bottom: 2.5rem;
+      }
+
+      .section-title {
+        font-size: clamp(1.35rem, 5vw, 1.75rem);
+      }
+
+      .section-desc {
+        font-size: 0.85rem;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
+
+      .kpi-card {
+        padding: 1rem 1.1rem;
+      }
+
+      .kpi-value {
+        font-size: 1.4rem;
+      }
+
+      .kpi-delta {
+        font-size: 0.72rem;
+      }
+
+      .card {
+        padding: 1.15rem;
+        border-radius: var(--radius-sm);
+      }
+
+      .chart-wrap {
+        height: 260px;
+        min-height: 220px;
+      }
+
+      .chart-wrap.tall {
+        height: 300px;
+        min-height: 260px;
+      }
+
+      .chart-wrap.short {
+        height: 220px;
+        min-height: 200px;
+      }
+
+      .theory-block {
+        padding: 1rem 1.1rem;
+      }
+
+      .theory-block p {
+        font-size: 0.84rem;
+      }
+
+      .location-rank {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        padding: 1rem;
+      }
+
+      .location-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .location-info h4 {
+        font-size: 0.88rem;
+      }
+
+      .score-bar {
+        margin-left: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 0.65rem;
+        border-top: 1px solid var(--border);
+        text-align: left;
+      }
+
+      .timeline {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.65rem;
+      }
+
+      .model-diagram {
+        padding: 1.25rem 0.5rem;
+      }
+
+      .model-center {
+        padding: 1rem 1.25rem;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 320px;
+      }
+
+      .model-branches {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .cta-section {
+        padding: 1.75rem 1.25rem;
+        margin-top: 2rem;
+      }
+
+      .cta-section h3 {
+        font-size: 1.25rem;
+      }
+
+      .setup-options {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .setup-btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .risk-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .data-table th,
+      .data-table td {
+        padding: 0.6rem 0.75rem;
+        font-size: 0.78rem;
+      }
+
+      .data-table th {
+        font-size: 0.65rem;
+      }
+
+      .table-scroll .data-table {
+        min-width: 520px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.65rem;
+      }
+
+      .badge {
+        font-size: 0.62rem;
+        padding: 0.3rem 0.6rem;
+      }
+
+      .kpi-value {
+        font-size: 1.25rem;
+      }
+
+      .chart-wrap {
+        height: 230px;
+        min-height: 200px;
+      }
+
+      .chart-wrap.tall {
+        height: 270px;
+        min-height: 230px;
+      }
+
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-phase {
+        padding: 1rem;
+      }
+
+      .rank-num {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+      }
+
+      .model-branch .pct {
+        font-size: 1.6rem;
+      }
+    }
+
+    @media (hover: none) {
+      .kpi-card:hover {
+        transform: none;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-inner">
+        <div>
+          <div class="badge">Market Intelligence · 2027 Launch</div>
+          <h1>Indore Electrical <span>Wholesale</span> Analytics</h1>
+          <p class="subtitle">Interactive business intelligence dashboard — market dynamics, product demand, location scoring, capital models & launch roadmap for first-time entrepreneurs.</p>
+        </div>
+        <nav class="nav-tabs">
+          <a href="#overview" class="nav-tab active">Overview</a>
+          <a href="#demand" class="nav-tab">Demand</a>
+          <a href="#competition" class="nav-tab">Competition</a>
+          <a href="#location" class="nav-tab">Location</a>
+          <a href="#finance" class="nav-tab">Finance</a>
+          <a href="#roadmap" class="nav-tab">Roadmap</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- EXECUTIVE OVERVIEW -->
+      <section id="overview">
+        <div class="section-header">
+          <div class="section-label">01 — Executive Summary</div>
+          <h2 class="section-title">Market at a Glance</h2>
+          <p class="section-desc">Indore is the commercial capital of Madhya Pradesh with ~$14B economic output. The electrical wholesale market is shifting from unorganized commodities toward branded, energy-efficient products — creating opportunity for structured new entrants.</p>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">Market Size (Indore + Periphery)</div>
+            <div class="kpi-value">₹1,200–1,500 <small>Cr/yr</small></div>
+            <div class="kpi-delta up">↑ B2B + B2B2C consumption</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Current CAGR</div>
+            <div class="kpi-value">11.5%</div>
+            <div class="kpi-delta up">↑ Accelerating to 13–14% by 2027</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">City Economic Output</div>
+            <div class="kpi-value">~$14 <small>Billion</small></div>
+            <div class="kpi-delta neutral">Commercial capital of MP</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Recommended Entry Capital</div>
+            <div class="kpi-value">₹25–50 <small>Lakhs</small></div>
+            <div class="kpi-delta neutral">Medium-scale setup (balanced)</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Market Growth Trajectory</div>
+            <div class="card-subtitle">Projected electrical market size in Indore (₹ Crore)</div>
+            <div class="chart-wrap">
+              <canvas id="marketGrowthChart"></canvas>
+            </div>
+            <div class="theory-block">
+              <h4>What this means</h4>
+              <p>Indore's electrical market is growing faster than national averages due to Super Corridor real estate, Pithampur industrial upgrades, Smart City Phase-II, and Metro Rail infrastructure. A 2027 launch positions you at the acceleration inflection point when CAGR rises from 11.5% to 13–14%.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Growth Drivers Breakdown</div>
+            <div class="card-subtitle">Contribution weight of demand catalysts</div>
+            <div class="chart-wrap">
+              <canvas id="growthDriversChart"></canvas>
+            </div>
+            <div class="theory-block">
+              <h4>Key insight</h4>
+              <p>Residential & commercial floor-space expansion (Super Corridor, Vijay Nagar, Nipania) drives highest volume. Industrial automation in Pithampur adds high-margin B2B demand. Public infrastructure (Smart City, Metro, data centers) creates sustained project pipelines.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DEMAND ANALYSIS -->
+      <section id="demand">
+        <div class="section-header">
+          <div class="section-label">02 — Demand Analysis</div>
+          <h2 class="section-title">Product Demand Matrix</h2>
+          <p class="section-desc">Three sectors — Residential (high volume), Commercial (project-driven), Industrial (technical, capital-intensive). For beginners, residential fast-movers offer easiest entry; industrial requires technical expertise.</p>
+        </div>
+
+        <div class="card" style="margin-bottom: 1.25rem;">
+          <div class="card-title">Residential Sector — Margin vs. Ease of Entry</div>
+          <div class="card-subtitle">Bubble size = capital required · Color = demand level</div>
+          <div class="chart-wrap tall">
+            <canvas id="residentialBubbleChart"></canvas>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Wholesale Margins by Category</div>
+            <div class="card-subtitle">Average margin ranges across all sectors (%)</div>
+            <div class="chart-wrap">
+              <canvas id="marginChart"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Estimated Growth Rates by Product</div>
+            <div class="card-subtitle">CAGR % — Residential & high-growth segments</div>
+            <div class="chart-wrap">
+              <canvas id="growthRateChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="theory-block" style="margin-top: 1.25rem;">
+          <h4>Beginner-friendly product strategy</h4>
+          <p><strong>Start with:</strong> House wires (0.75–4 sq mm), standard MCBs, 2×2 LED panels, PVC conduits — fast turnover (15–30 days), electrician-driven demand, minimal technical selling.<br><br>
+          <strong>Avoid initially:</strong> VFDs, automation kits, custom industrial cables — require engineering knowledge, 90+ day turnover, and OEM authorizations.<br><br>
+          <strong>Sweet spot:</strong> LED lighting (8–12% margins, low capital ₹3L) and modular switches (4–7% margins, brand-driven pull).</p>
+        </div>
+
+        <div class="card" style="margin-top: 1.25rem;">
+          <div class="card-title">Full Product Matrix — Residential Sector</div>
+          <div class="card-subtitle">Quick reference for inventory planning</div>
+          <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Demand</th>
+                <th>Growth</th>
+                <th>Margin</th>
+                <th>Capital</th>
+                <th>Competition</th>
+                <th>Entry Ease</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="highlight">Wires & Cables</td>
+                <td><span class="tag very-high">Very High</span></td>
+                <td>12%</td>
+                <td>1.5–3%</td>
+                <td>₹15L+</td>
+                <td>Extreme</td>
+                <td><span class="tag high">Easy</span></td>
+              </tr>
+              <tr>
+                <td class="highlight">Switches & Sockets</td>
+                <td><span class="tag high">High</span></td>
+                <td>10%</td>
+                <td>4–7%</td>
+                <td>₹5L</td>
+                <td>High</td>
+                <td><span class="tag medium">Medium</span></td>
+              </tr>
+              <tr>
+                <td class="highlight">MCBs & DBs</td>
+                <td><span class="tag high">High</span></td>
+                <td>13%</td>
+                <td>5–8%</td>
+                <td>₹4L</td>
+                <td>High</td>
+                <td><span class="tag medium">Medium</span></td>
+              </tr>
+              <tr>
+                <td class="highlight">LED Lighting</td>
+                <td><span class="tag high">High</span></td>
+                <td>15%</td>
+                <td>8–12%</td>
+                <td>₹3L</td>
+                <td>High</td>
+                <td><span class="tag high">Very Easy</span></td>
+              </tr>
+              <tr>
+                <td class="highlight">Fans & Appliances</td>
+                <td><span class="tag medium">Seasonal</span></td>
+                <td>8%</td>
+                <td>3–5%</td>
+                <td>₹6L</td>
+                <td>Moderate</td>
+                <td><span class="tag high">Easy</span></td>
+              </tr>
+              <tr>
+                <td class="highlight">Smart Home</td>
+                <td><span class="tag medium">Medium</span></td>
+                <td>22%</td>
+                <td>12–18%</td>
+                <td>₹2L</td>
+                <td>Low</td>
+                <td><span class="tag medium">Medium</span></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPETITION -->
+      <section id="competition">
+        <div class="section-header">
+          <div class="section-label">03 — Competitive Landscape</div>
+          <h2 class="section-title">Market Hubs & Gaps</h2>
+          <p class="section-desc">Indore's wholesale ecosystem is hyper-localized. Traditional hubs have volume but suffer logistics friction, poor billing transparency, and zero digital inventory — your differentiation opportunity.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Competitor Hub Strengths vs. Weaknesses</div>
+            <div class="card-subtitle">Radar comparison across 5 dimensions (score /10)</div>
+            <div class="chart-wrap tall">
+              <canvas id="competitorRadarChart"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Market Gap Opportunity Score</div>
+            <div class="card-subtitle">How underserved each gap segment is (higher = more opportunity)</div>
+            <div class="chart-wrap tall">
+              <canvas id="gapOpportunityChart"></canvas>
+            </div>
+            <div class="theory-block">
+              <h4>Your competitive edge</h4>
+              <p>Position as the "professionalized contractor supplier" — structured GST billing with ITC compliance, cash/immediate transfer policy (no credit trap), site delivery, and a relationship manager. Traditional Maharani Road traders won't compete on service; they compete on price and relationships built over decades.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LOCATION -->
+      <section id="location">
+        <div class="section-header">
+          <div class="section-label">04 — Location Intelligence</div>
+          <h2 class="section-title">Site Selection Analysis</h2>
+          <p class="section-desc">Balance customer footfall against logistics, parking, competition density, and rent. Vijay Nagar peripheral corridor scores highest for balanced B2B contractor access.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Location Scoring Comparison</div>
+            <div class="card-subtitle">Wholesale suitability score out of 10</div>
+            <div class="chart-wrap">
+              <canvas id="locationScoreChart"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Rent vs. Logistics Trade-off</div>
+            <div class="card-subtitle">Monthly rent (₹/sq ft) vs. logistics score</div>
+            <div class="chart-wrap">
+              <canvas id="rentLogisticsChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 1.25rem;">
+          <div class="card-title">Top 3 Recommended Locations</div>
+          <div class="card-subtitle">Ranked by composite wholesale score</div>
+
+          <div class="location-rank top">
+            <div class="rank-num">1</div>
+            <div class="location-info">
+              <h4>Vijay Nagar Peripheral / Commercial Ring Road</h4>
+              <p>Score 8.5/10 — Premium real estate corridor, excellent Bypass/Super Corridor access, moderate competition, good parking. Best for B2B contractor supply model.</p>
+            </div>
+            <div class="score-bar">
+              <div class="score">8.5</div>
+              <div class="score-label">Wholesale Score</div>
+            </div>
+          </div>
+
+          <div class="location-rank">
+            <div class="rank-num">2</div>
+            <div class="location-info">
+              <h4>Dewas Naka / Sanwer Road Transition</h4>
+              <p>Score 7.5/10 — Industrial focus, vast warehouse space, low rent (₹25–45/sq ft), unrestricted vehicle movement. Ideal for panel builders & regional sub-wholesalers.</p>
+            </div>
+            <div class="score-bar">
+              <div class="score">7.5</div>
+              <div class="score-label">Wholesale Score</div>
+            </div>
+          </div>
+
+          <div class="location-rank">
+            <div class="rank-num">3</div>
+            <div class="location-info">
+              <h4>Maharani Road (High-Risk / High-Reward)</h4>
+              <p>Score 6.5/10 — Highest buyer concentration but chaotic logistics, zero parking, extreme competition. Only if affordable pocket showroom + off-site warehousing.</p>
+            </div>
+            <div class="score-bar">
+              <div class="score">6.5</div>
+              <div class="score-label">Wholesale Score</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 1.25rem;">
+          <div class="card-title">Full Location Evaluation Matrix</div>
+          <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Location</th>
+                <th>Footfall</th>
+                <th>Logistics</th>
+                <th>Parking</th>
+                <th>Competition</th>
+                <th>Rent (₹/sq ft)</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="highlight">Vijay Nagar / Super Corridor</td><td>8/10</td><td>7/10</td><td>7/10</td><td>5/10</td><td>₹45–75</td><td><span class="tag high">8.5</span></td></tr>
+              <tr><td class="highlight">Dewas Naka / Sanwer Rd</td><td>5/10</td><td>9/10</td><td>9/10</td><td>4/10</td><td>₹25–45</td><td><span class="tag high">7.5</span></td></tr>
+              <tr><td class="highlight">Maharani Road</td><td>10/10</td><td>2/10</td><td>1/10</td><td>10/10</td><td>₹80–150</td><td><span class="tag medium">6.5</span></td></tr>
+              <tr><td class="highlight">Siyaganj</td><td>8/10</td><td>4/10</td><td>2/10</td><td>8/10</td><td>₹60–100</td><td><span class="tag medium">6.0</span></td></tr>
+              <tr><td class="highlight">Palasia / Ring Rd</td><td>6/10</td><td>5/10</td><td>4/10</td><td>6/10</td><td>₹60–90</td><td><span class="tag medium">5.5</span></td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINANCE -->
+      <section id="finance">
+        <div class="section-header">
+          <div class="section-label">05 — Financial Modeling</div>
+          <h2 class="section-title">Capital Allocation & Profitability</h2>
+          <p class="section-desc">Three scalable entry paths. Medium-scale (₹25–50L) offers the best risk-reward balance for a first-time entrepreneur — sufficient inventory depth without excessive fixed costs.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-title">Small Scale — ₹10–15L</div>
+            <div class="card-subtitle">Lean counter + limited B2B</div>
+            <div class="chart-wrap short">
+              <canvas id="smallCapExChart"></canvas>
+            </div>
+            <div style="margin-top: 1rem; font-size: 0.82rem; color: var(--text-muted);">
+              <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;"><span>Monthly Revenue</span><strong style="color:var(--text-primary)">₹6L</strong></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;"><span>Net Profit</span><strong style="color:var(--success)">₹10K/mo</strong></div>
+              <div style="display:flex;justify-content:space-between;"><span>Break-even</span><strong style="color:var(--warning)">18–22 months</strong></div>
+            </div>
+          </div>
+          <div class="card" style="border-color: var(--border-accent);">
+            <div class="card-title">Medium Scale — ₹25–50L ★ Recommended</div>
+            <div class="card-subtitle">Balanced B2B + wholesale</div>
+            <div class="chart-wrap short">
+              <canvas id="mediumCapExChart"></canvas>
+            </div>
+            <div style="margin-top: 1rem; font-size: 0.82rem; color: var(--text-muted);">
+              <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;"><span>Monthly Revenue</span><strong style="color:var(--text-primary)">₹22L</strong></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;"><span>Net Profit</span><strong style="color:var(--success)">₹48K/mo</strong></div>
+              <div style="display:flex;justify-content:space-between;"><span>Break-even</span><strong style="color:var(--warning)">14–16 months</strong></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Large Scale — ₹50L–1Cr</div>
+            <div class="card-subtitle">High-volume B2B focus</div>
+            <div class="chart-wrap short">
+              <canvas id="largeCapExChart"></canvas>
+            </div>
+            <div style="margin-top: 1rem; font-size: 0.82rem; color: var(--text-muted);">
+              <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;"><span>Monthly Revenue</span><strong style="color:var(--text-primary)">₹65L</strong></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;"><span>Net Profit</span><strong style="color:var(--success)">₹87.5K/mo</strong></div>
+              <div style="display:flex;justify-content:space-between;"><span>Break-even</span><strong style="color:var(--warning)">12–14 months</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top: 1.25rem;">
+          <div class="card">
+            <div class="card-title">Revenue & Profit Comparison</div>
+            <div class="card-subtitle">Monthly figures across three setups (₹ Lakhs)</div>
+            <div class="chart-wrap">
+              <canvas id="financialComparisonChart"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Break-Even Timeline</div>
+            <div class="card-subtitle">Months to recover initial investment</div>
+            <div class="chart-wrap">
+              <canvas id="breakEvenChart"></canvas>
+            </div>
+            <div class="theory-block">
+              <h4>Capital allocation tip</h4>
+              <p>As a new entrant, use <strong>Parallel Procurement</strong> (sub-wholesaling from Tier-1 distributors in Indore/Delhi/Ahmedabad at 60–70% off MRP) instead of chasing direct brand distributorships. This preserves working capital and builds sales history for future authorization.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 1.25rem;">
+          <div class="card-title">Brand Investment Thresholds</div>
+          <div class="card-subtitle">Partner investment requirements for key brands</div>
+          <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr><th>Vertical</th><th>Brand</th><th>Tier</th><th>Investment</th><th>Margin</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Wires</td><td class="highlight">Polycab / Havells</td><td>Tier 1</td><td>₹25–40L</td><td>1.5–2.5%</td></tr>
+              <tr><td>Wires</td><td class="highlight">RR Kabel / KEI</td><td>Tier 2</td><td>₹15–25L</td><td>2.5–4%</td></tr>
+              <tr><td>Switchgear</td><td class="highlight">Legrand / Schneider</td><td>Tier 1</td><td>₹15–25L</td><td>4–6%</td></tr>
+              <tr><td>Lighting</td><td class="highlight">Philips / Wipro</td><td>Tier 1</td><td>₹10–15L</td><td>7–12%</td></tr>
+              <tr><td>Lighting</td><td class="highlight">Crompton / Bajaj</td><td>Tier 2</td><td>₹5–10L</td><td>10–15%</td></tr>
+              <tr><td>Fans</td><td class="highlight">Crompton / Havells</td><td>Tier 1</td><td>₹10–15L</td><td>3–5%</td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUSINESS MODEL -->
+      <section id="model">
+        <div class="section-header">
+          <div class="section-label">06 — Recommended Model</div>
+          <h2 class="section-title">B2B Contractor Supply Architecture</h2>
+          <p class="section-desc">Optimal for zero technical background — contractors bring exact BOMs; you execute procurement and logistics.</p>
+        </div>
+
+        <div class="card">
+          <div class="model-diagram">
+            <div class="model-center">Your 2027 Wholesale Business</div>
+            <div class="model-branches">
+              <div class="model-branch">
+                <div class="pct" style="color: var(--accent);">70%</div>
+                <h4>B2B Contractor Supply</h4>
+                <ul>
+                  <li>Builders, electricians, PWD firms</li>
+                  <li>Value-added site delivery</li>
+                  <li>Catalog-driven orders from BOMs</li>
+                  <li>No technical selling required</li>
+                </ul>
+              </div>
+              <div class="model-branch">
+                <div class="pct" style="color: var(--info);">30%</div>
+                <h4>Counter Wholesale</h4>
+                <ul>
+                  <li>Walk-in retailers & buyers</li>
+                  <li>High-margin spot-cash sales</li>
+                  <li>Brand-pull products (wires, MCBs)</li>
+                  <li>Cash velocity optimization</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="theory-block">
+            <h4>Why this works for beginners</h4>
+            <p>Turnkey interior designers and electrical sub-contractors know exactly what they need — "Polycab 2.5mm Green Wire, 10 coils." Your role is pure procurement + logistics. You're shielded from retail chaos, high-rent crowded markets, and consumer tech explanations. Focus cash-only policy in Year 1 to avoid the credit trap that kills new wholesalers.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- RISKS -->
+      <section id="risks">
+        <div class="section-header">
+          <div class="section-label">07 — Risk Mitigation</div>
+          <h2 class="section-title">Operational Risk Framework</h2>
+          <p class="section-desc">Wholesale electrical has three primary failure modes for first-timers. Each has a clear mitigation strategy.</p>
+        </div>
+
+        <div class="risk-grid">
+          <div class="risk-card">
+            <div class="risk-level critical">Critical Risk</div>
+            <h4>Credit Extension Trap</h4>
+            <p>Traditional channels demand 30–90 day credit. New entrants who extend credit without collections infrastructure face cash flow collapse within 6 months.</p>
+            <div class="mitigation">✓ Mitigation: Cash/IMPS/RTGS only in Year 1. Position as "lower margin, zero credit" dealer.</div>
+          </div>
+          <div class="risk-card">
+            <div class="risk-level high">High Risk</div>
+            <h4>Inventory Obsolescence</h4>
+            <p>Decorative lighting and modular switch aesthetics shift rapidly. Dead stock ties up 20–30% of working capital.</p>
+            <div class="mitigation">✓ Mitigation: Stock neutral project whites/grays only. Avoid high-end consumer-facing designs.</div>
+          </div>
+          <div class="risk-card">
+            <div class="risk-level medium">Medium Risk</div>
+            <h4>Commodity Price Shocks</h4>
+            <p>Copper/aluminum price swings on global exchanges can erase wire/cable margins overnight.</p>
+            <div class="mitigation">✓ Mitigation: Thin high-velocity wire stock. Pass price revisions same-day with Tier-1 partners.</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 1.25rem;">
+          <div class="card-title">Inventory Velocity Classification</div>
+          <div class="card-subtitle">SKU turnover strategy for capital efficiency</div>
+          <div class="chart-wrap">
+            <canvas id="inventoryVelocityChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- ROADMAP -->
+      <section id="roadmap">
+        <div class="section-header">
+          <div class="section-label">08 — Launch Roadmap</div>
+          <h2 class="section-title">12-Month Pre-Launch Timeline</h2>
+          <p class="section-desc">Structured capital deployment — build networks and supplier ties before committing to lease and inventory.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-phase active">
+            <div class="phase-months">Month 1–2</div>
+            <div class="phase-title">On-Ground Shadowing</div>
+            <ul class="phase-tasks">
+              <li>Shadow wholesale hubs</li>
+              <li>Learn market pricing</li>
+              <li>Map active build sites</li>
+            </ul>
+          </div>
+          <div class="timeline-phase">
+            <div class="phase-months">Month 3–4</div>
+            <div class="phase-title">Supplier B2B Tie-ups</div>
+            <ul class="phase-tasks">
+              <li>Source Tier-1 nodes</li>
+              <li>Delhi & Indore links</li>
+              <li>Create discount tiers</li>
+            </ul>
+          </div>
+          <div class="timeline-phase">
+            <div class="phase-months">Month 5–6</div>
+            <div class="phase-title">Site Selection</div>
+            <ul class="phase-tasks">
+              <li>Secure Vijay Nagar space</li>
+              <li>Warehouse layout design</li>
+              <li>Racking setup</li>
+            </ul>
+          </div>
+          <div class="timeline-phase">
+            <div class="phase-months">Month 7–8</div>
+            <div class="phase-title">Legal & Digital</div>
+            <ul class="phase-tasks">
+              <li>GST registration</li>
+              <li>Corporate bank account</li>
+              <li>ERP implementation</li>
+            </ul>
+          </div>
+          <div class="timeline-phase">
+            <div class="phase-months">Month 9–10</div>
+            <div class="phase-title">Core Stock Ingestion</div>
+            <ul class="phase-tasks">
+              <li>Phase-1 fast movers</li>
+              <li>Wire & switchgear lines</li>
+              <li>Introductory marketing</li>
+            </ul>
+          </div>
+          <div class="timeline-phase">
+            <div class="phase-months">Month 11–12</div>
+            <div class="phase-title">Local Launch</div>
+            <ul class="phase-tasks">
+              <li>Field sales to sites</li>
+              <li>Open spot-cash counter</li>
+              <li>Contractor onboarding</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 1.5rem;">
+          <div class="card-title">Regulatory Checklist</div>
+          <div class="card-subtitle">Compliance requirements before trading</div>
+          <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr><th>Requirement</th><th>Authority</th><th>Timeline</th><th>Priority</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="highlight">GST Registration (Regular)</td><td>GST Portal</td><td>Before first sale</td><td><span class="tag very-high">Critical</span></td></tr>
+              <tr><td class="highlight">Gumasta / Shop & Establishment</td><td>Indore Municipal Corp</td><td>Within 30 days of opening</td><td><span class="tag high">Required</span></td></tr>
+              <tr><td class="highlight">Trade License</td><td>IMC</td><td>Before warehouse ops</td><td><span class="tag high">Required</span></td></tr>
+              <tr><td class="highlight">BIS/ISI Compliance Verification</td><td>Manufacturer certs</td><td>Ongoing</td><td><span class="tag medium">Ongoing</span></td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <div class="cta-section">
+        <h3>Which setup matches your capital?</h3>
+        <p>The medium-scale model (₹25–50 Lakhs) offers the optimal balance: sufficient inventory for contractor relationships, manageable fixed costs, and 14–16 month break-even — without the credit exposure of large-scale B2B.</p>
+        <div class="setup-options">
+          <button class="setup-btn" onclick="highlightSetup('small')">Small — ₹10–15L</button>
+          <button class="setup-btn recommended" onclick="highlightSetup('medium')">Medium — ₹25–50L</button>
+          <button class="setup-btn" onclick="highlightSetup('large')">Large — ₹50L–1Cr</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script>
+    const accent = '#d4a853';
+    const accentSoft = 'rgba(212, 168, 83, 0.6)';
+    const success = '#34d399';
+    const warning = '#fbbf24';
+    const danger = '#f87171';
+    const info = '#60a5fa';
+    const purple = '#a78bfa';
+    const palette = [accent, info, success, warning, danger, purple, '#f472b6', '#38bdf8'];
+
+    const chartInstances = [];
+
+    function safeChart(id, config) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      try {
+        const instance = new Chart(el, config);
+        chartInstances.push(instance);
+      } catch (err) {
+        console.error('Chart failed:', id, err);
+        const wrap = el.closest('.chart-wrap');
+        if (wrap) {
+          let msg = wrap.querySelector('.chart-error');
+          if (!msg) {
+            msg = document.createElement('div');
+            msg.className = 'chart-error';
+            msg.textContent = 'Chart could not load. Refresh the page.';
+            wrap.appendChild(msg);
+          }
+          msg.style.display = 'flex';
+        }
+      }
+    }
+
+    function initAllCharts() {
+      if (typeof Chart === 'undefined') {
+        document.querySelectorAll('.chart-wrap').forEach(wrap => {
+          const msg = document.createElement('div');
+          msg.className = 'chart-error';
+          msg.style.display = 'flex';
+          msg.textContent = 'Chart library failed to load. Check your internet connection and refresh.';
+          wrap.appendChild(msg);
+        });
+        return;
+      }
+
+      Chart.defaults.color = '#a1a1aa';
+      Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
+      Chart.defaults.font.family = "'DM Sans', system-ui, sans-serif";
+
+    // 1. Market Growth
+    safeChart('marketGrowthChart', {
+      type: 'line',
+      data: {
+        labels: ['2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032'],
+        datasets: [{
+          label: 'Market Size (₹ Crore)',
+          data: [1050, 1170, 1305, 1475, 1665, 1880, 2125, 2400, 2710],
+          borderColor: accent,
+          backgroundColor: 'rgba(212, 168, 83, 0.1)',
+          fill: true,
+          tension: 0.4,
+          pointBackgroundColor: accent,
+          pointRadius: 4,
+          pointHoverRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => `₹${ctx.parsed.y.toLocaleString('en-IN')} Crore`
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: false,
+            grid: { color: 'rgba(255,255,255,0.04)' },
+            ticks: { callback: v => '₹' + v + 'Cr' }
+          },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+
+    // 2. Growth Drivers
+    safeChart('growthDriversChart', {
+      type: 'doughnut',
+      data: {
+        labels: ['Residential & Commercial', 'Industrial Automation', 'Public Infrastructure', 'Smart City & Metro', 'Data Centers & Manufacturing'],
+        datasets: [{
+          data: [35, 22, 18, 15, 10],
+          backgroundColor: palette,
+          borderWidth: 0,
+          hoverOffset: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '65%',
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { boxWidth: 12, padding: 10, font: { size: 10 } }
+          }
+        },
+        layout: { padding: { top: 8, bottom: 4 } }
+      }
+    });
+
+    // 3. Residential bubble (scatter as bar combo)
+    safeChart('residentialBubbleChart', {
+      type: 'bar',
+      data: {
+        labels: ['Wires & Cables', 'Switches', 'MCBs & DBs', 'LED Lighting', 'Fans', 'Smart Home'],
+        datasets: [
+          {
+            label: 'Avg Margin Mid (%)',
+            data: [2.25, 5.5, 6.5, 10, 4, 15],
+            backgroundColor: accentSoft,
+            borderColor: accent,
+            borderWidth: 1,
+            borderRadius: 6,
+            yAxisID: 'y'
+          },
+          {
+            label: 'Capital Required (₹ Lakhs)',
+            data: [15, 5, 4, 3, 6, 2],
+            type: 'line',
+            borderColor: info,
+            backgroundColor: info,
+            pointRadius: 6,
+            pointHoverRadius: 8,
+            tension: 0.3,
+            yAxisID: 'y1'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'top', labels: { boxWidth: 12 } }
+        },
+        scales: {
+          y: {
+            position: 'left',
+            title: { display: true, text: 'Margin (%)' },
+            grid: { color: 'rgba(255,255,255,0.04)' }
+          },
+          y1: {
+            position: 'right',
+            title: { display: true, text: 'Capital (₹L)' },
+            grid: { display: false }
+          },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+
+    // 4. Margins
+    safeChart('marginChart', {
+      type: 'bar',
+      data: {
+        labels: ['Wires', 'Switches', 'MCBs', 'LED', 'Fans', 'Smart Home', 'Panel Acc.', 'Comm. Lighting', 'Contactors', 'VFDs'],
+        datasets: [{
+          label: 'Margin Low',
+          data: [1.5, 4, 5, 8, 3, 12, 7, 10, 6, 12],
+          backgroundColor: 'rgba(255,255,255,0.08)',
+          borderRadius: 4
+        }, {
+          label: 'Margin High',
+          data: [3, 7, 8, 12, 5, 18, 10, 15, 9, 20],
+          backgroundColor: accentSoft,
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'top', labels: { boxWidth: 12 } } },
+        scales: {
+          x: { grid: { display: false } },
+          y: { ticks: { callback: v => v + '%' }, grid: { color: 'rgba(255,255,255,0.04)' } }
+        }
+      }
+    });
+
+    // 5. Growth rates
+    safeChart('growthRateChart', {
+      type: 'bar',
+      data: {
+        labels: ['Smart Home', 'VFDs', 'LED', 'Comm. Lighting', 'FR Cables', 'MCBs', 'Wires', 'Switches', 'Fans', 'Motors'],
+        datasets: [{
+          label: 'CAGR %',
+          data: [22, 18, 15, 16, 14, 13, 12, 10, 8, 9],
+          backgroundColor: (ctx) => ctx.dataIndex < 3 ? accent : 'rgba(255,255,255,0.12)',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { callback: v => v + '%' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+          y: { grid: { display: false } }
+        }
+      }
+    });
+
+    // 6. Competitor radar
+    safeChart('competitorRadarChart', {
+      type: 'radar',
+      data: {
+        labels: ['Volume', 'B2B Ties', 'Logistics', 'Digital Ready', 'Service Quality', 'Pricing'],
+        datasets: [
+          {
+            label: 'Maharani Road',
+            data: [10, 6, 2, 1, 3, 9],
+            borderColor: danger,
+            backgroundColor: 'rgba(248, 113, 113, 0.1)',
+            pointBackgroundColor: danger
+          },
+          {
+            label: 'Siyaganj',
+            data: [7, 8, 4, 2, 4, 7],
+            borderColor: warning,
+            backgroundColor: 'rgba(251, 191, 36, 0.1)',
+            pointBackgroundColor: warning
+          },
+          {
+            label: 'Dewas Naka',
+            data: [6, 7, 9, 3, 5, 6],
+            borderColor: info,
+            backgroundColor: 'rgba(96, 165, 250, 0.1)',
+            pointBackgroundColor: info
+          },
+          {
+            label: 'Your Opportunity',
+            data: [4, 7, 8, 9, 9, 7],
+            borderColor: success,
+            backgroundColor: 'rgba(52, 211, 153, 0.15)',
+            pointBackgroundColor: success
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            beginAtZero: true,
+            max: 10,
+            ticks: { stepSize: 2, display: false },
+            grid: { color: 'rgba(255,255,255,0.06)' },
+            pointLabels: { font: { size: 11 } }
+          }
+        },
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, padding: 16 } }
+        }
+      }
+    });
+
+    // 7. Gap opportunity
+    safeChart('gapOpportunityChart', {
+      type: 'polarArea',
+      data: {
+        labels: ['Logistical Friction Fix', 'Professionalized Contractor Service', 'Technical Consulting', 'Digital Inventory Sync', 'Structured Credit (for you: cash-only edge)', 'Site Delivery'],
+        datasets: [{
+          data: [85, 90, 75, 80, 70, 88],
+          backgroundColor: [
+            'rgba(212, 168, 83, 0.7)',
+            'rgba(52, 211, 153, 0.7)',
+            'rgba(96, 165, 250, 0.7)',
+            'rgba(167, 139, 250, 0.7)',
+            'rgba(251, 191, 36, 0.7)',
+            'rgba(244, 114, 182, 0.7)'
+          ],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 }, padding: 10 } }
+        },
+        scales: {
+          r: {
+            ticks: { display: false },
+            grid: { color: 'rgba(255,255,255,0.06)' }
+          }
+        }
+      }
+    });
+
+    // 8. Location scores
+    safeChart('locationScoreChart', {
+      type: 'bar',
+      data: {
+        labels: ['Vijay Nagar', 'Dewas Naka', 'Maharani Rd', 'Siyaganj', 'Palasia'],
+        datasets: [{
+          label: 'Wholesale Score',
+          data: [8.5, 7.5, 6.5, 6.0, 5.5],
+          backgroundColor: [accent, accentSoft, 'rgba(255,255,255,0.15)', 'rgba(255,255,255,0.12)', 'rgba(255,255,255,0.1)'],
+          borderRadius: 8,
+          borderSkipped: false
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { max: 10, grid: { color: 'rgba(255,255,255,0.04)' } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+
+    // 9. Rent vs Logistics scatter
+    safeChart('rentLogisticsChart', {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Locations',
+          data: [
+            { x: 115, y: 2, label: 'Maharani Rd' },
+            { x: 80, y: 4, label: 'Siyaganj' },
+            { x: 35, y: 9, label: 'Dewas Naka' },
+            { x: 60, y: 7, label: 'Vijay Nagar' },
+            { x: 75, y: 5, label: 'Palasia' }
+          ],
+          backgroundColor: accent,
+          pointRadius: 10,
+          pointHoverRadius: 14
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => {
+                const labels = ['Maharani Rd', 'Siyaganj', 'Dewas Naka', 'Vijay Nagar', 'Palasia'];
+                return `${labels[ctx.dataIndex]}: Rent ₹${ctx.parsed.x}/sqft, Logistics ${ctx.parsed.y}/10`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            title: { display: true, text: 'Avg Rent (₹/sq ft)' },
+            grid: { color: 'rgba(255,255,255,0.04)' }
+          },
+          y: {
+            title: { display: true, text: 'Logistics Score (/10)' },
+            max: 10,
+            grid: { color: 'rgba(255,255,255,0.04)' }
+          }
+        }
+      }
+    });
+
+    // CapEx donut helper
+    function createCapExChart(id, data, colors) {
+      safeChart(id, {
+        type: 'doughnut',
+        data: {
+          labels: ['Shop Deposit', 'Interiors & IT', 'Inventory', 'Legal & ERP', 'Working Capital'],
+          datasets: [{
+            data,
+            backgroundColor: colors,
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '60%',
+          plugins: {
+            legend: { display: false }
+          }
+        }
+      });
+    }
+
+    createCapExChart('smallCapExChart', [10, 1.5, 8.5, 0.2, 1.8], palette);
+    createCapExChart('mediumCapExChart', [20, 3.5, 28, 0.5, 6], palette);
+    createCapExChart('largeCapExChart', [40, 7.5, 60, 1.5, 17], palette);
+
+    // Financial comparison
+    safeChart('financialComparisonChart', {
+      type: 'bar',
+      data: {
+        labels: ['Small (₹10-15L)', 'Medium (₹25-50L)', 'Large (₹50L-1Cr)'],
+        datasets: [
+          {
+            label: 'Monthly Revenue (₹L)',
+            data: [6, 22, 65],
+            backgroundColor: accentSoft,
+            borderRadius: 6
+          },
+          {
+            label: 'Gross Profit (₹L)',
+            data: [0.51, 1.43, 2.93],
+            backgroundColor: info,
+            borderRadius: 6
+          },
+          {
+            label: 'Net Profit (₹L)',
+            data: [0.1, 0.48, 0.875],
+            backgroundColor: success,
+            borderRadius: 6
+          },
+          {
+            label: 'Monthly Expenses (₹L)',
+            data: [0.41, 0.95, 2.05],
+            backgroundColor: 'rgba(248, 113, 113, 0.5)',
+            borderRadius: 6
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'top', labels: { boxWidth: 12 } } },
+        scales: {
+          y: { grid: { color: 'rgba(255,255,255,0.04)' } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+
+    // Break-even
+    safeChart('breakEvenChart', {
+      type: 'bar',
+      data: {
+        labels: ['Small Scale', 'Medium Scale', 'Large Scale'],
+        datasets: [{
+          label: 'Break-even (months)',
+          data: [20, 15, 13],
+          backgroundColor: [warning, accent, success],
+          borderRadius: 8
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: {
+            title: { display: true, text: 'Months to break even' },
+            grid: { color: 'rgba(255,255,255,0.04)' }
+          },
+          y: { grid: { display: false } }
+        }
+      }
+    });
+
+    // Inventory velocity
+    safeChart('inventoryVelocityChart', {
+      type: 'bar',
+      data: {
+        labels: ['House Wires', 'MCBs 16/32A', '2x2 LED Panels', 'PVC Conduits', 'Modular Switches', 'Decorative LEDs', 'Distribution Boards', 'VFDs', 'Smart Automation'],
+        datasets: [{
+          label: 'Turnover Days',
+          data: [22, 25, 28, 20, 52, 55, 95, 120, 100],
+          backgroundColor: (ctx) => {
+            const v = ctx.parsed.y;
+            return v <= 30 ? success : v <= 60 ? warning : danger;
+          },
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          y: {
+            title: { display: true, text: 'Days to Turnover' },
+            grid: { color: 'rgba(255,255,255,0.04)' }
+          },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+
+      // Force resize after layout settles
+      requestAnimationFrame(() => {
+        chartInstances.forEach(c => c.resize());
+      });
+    }
+
+    function initNav() {
+      const sections = document.querySelectorAll('section[id]');
+      const navTabs = document.querySelectorAll('.nav-tab');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const top = section.offsetTop - 80;
+          if (window.scrollY >= top) current = section.getAttribute('id');
+        });
+        navTabs.forEach(tab => {
+          tab.classList.remove('active');
+          if (tab.getAttribute('href') === '#' + current) tab.classList.add('active');
+        });
+      });
+    }
+
+    function highlightSetup(size) {
+      document.querySelectorAll('.setup-btn').forEach(btn => btn.classList.remove('recommended'));
+      event.target.classList.add('recommended');
+      document.getElementById('finance').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function resizeAllCharts() {
+      chartInstances.forEach(c => c.resize());
+    }
+
+    let resizeTimer;
+    function onViewportChange() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resizeAllCharts, 150);
+    }
+
+    function boot() {
+      initAllCharts();
+      initNav();
+      window.addEventListener('resize', onViewportChange);
+      window.addEventListener('orientationchange', onViewportChange);
+    }
+
+    if (document.readyState === 'complete') {
+      boot();
+    } else {
+      window.addEventListener('load', boot);
+    }
+  </script>
+</body>
+</html>
